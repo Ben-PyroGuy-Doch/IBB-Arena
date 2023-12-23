@@ -1,0 +1,14 @@
+[Unit]
+Description=Appname
+After=network.target
+
+[Service]
+User=grant
+WorkingDirectory=/home/grant/code/webapp
+LimitNOFILE=4096
+ExecStart=/home/grant/.local/bin/flask --app app run --debug --host=0.0.0.0
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

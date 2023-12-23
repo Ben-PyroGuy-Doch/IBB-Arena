@@ -1,0 +1,14 @@
+[Unit]
+Description=Appname
+After=network.target
+
+[Service]
+User=grant
+WorkingDirectory=/home/grant/code/
+LimitNOFILE=4096
+ExecStart=/home/grant/.local/bin/uvicorn api:app --reload --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
