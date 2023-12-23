@@ -1,33 +1,33 @@
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 </head>
 <h1>IBB Arena</h1>
 
-<div><
-    <button  type="button" class="btn btn-primary">start</button>
+<div>
+    <button  type="button" id="startmatch" class="btn btn-primary">start</button>
 
 
-    <button type="button" class="btn btn-danger">pit</button>
+    <button type="button" id="pit" class="btn btn-danger">pit</button>
 
   
 
-    <button type="button" class="btn btn-warning">Flip</button>
+    <button type="button" id="flipper" class="btn btn-warning">Flip</button>
 </div>
 
 <div>
-  <button type="button" id="click-me-button" class="btn btn-danger">Spinner On</button>
+  <button type="button" id="spinneron" class="btn btn-danger">Spinner On</button>
 
-  <button type="button" class="btn btn-success">Spinner Off</button>
+  <button type="button" id="spinneroff" class="btn btn-success">Spinner Off</button>
 
 </div>
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<button type="button" id="click-me" class="btn btn-danger">Spinner On</button>
+
+
 
 
 
@@ -44,12 +44,12 @@
                   console.log("Request successful:", data);
                   // You can handle the response data here if needed
               },
-              error: function(xhr, status, error) {
-                  console.error("Error:", error);
-                  console.error("Status:", status);
-                  console.error("XHR:", xhr);
-                  // Handle errors if any
-              }
+              // error: function(xhr, status, error) {
+              //     console.error("Error:", error);
+              //     console.error("Status:", status);
+              //     console.error("XHR:", xhr);
+              //     // Handle errors if any
+              // }
           });
       }
 
