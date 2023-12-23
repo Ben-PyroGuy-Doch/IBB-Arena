@@ -1,19 +1,80 @@
-<head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+</head>
+</head>
 <h1>IBB Arena</h1>
 
-<a href="http://localhost:8000/start">
-    <button type="button" class="btn btn-primary">start</button>
+<div><
+    <button  type="button" class="btn btn-primary">start</button>
 
-  </a>
 
-<a href="http://localhost:8000/pit">
     <button type="button" class="btn btn-danger">pit</button>
 
-  </a>
-<!-- <button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button> -->
+  
+
+    <button type="button" class="btn btn-warning">Flip</button>
+</div>
+
+<div>
+  <button type="button" id="click-me-button" class="btn btn-danger">Spinner On</button>
+
+  <button type="button" class="btn btn-success">Spinner Off</button>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<button type="button" id="click-me" class="btn btn-danger">Spinner On</button>
+
+
+
+<script>
+  $(function () {
+      function makeAjaxRequest(url) {
+          console.log("Button clicked for URL:", url);
+
+          // Make an AJAX request
+          $.ajax({
+              type: "GET",
+              url: url,
+              success: function(data) {
+                  console.log("Request successful:", data);
+                  // You can handle the response data here if needed
+              },
+              error: function(xhr, status, error) {
+                  console.error("Error:", error);
+                  console.error("Status:", status);
+                  console.error("XHR:", xhr);
+                  // Handle errors if any
+              }
+          });
+      }
+
+      // Attach click event handlers to buttons
+      $("#spinneron").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/spinner/?onof=True");
+      });
+
+      $("#spinneroff").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/spinner/?onof=False");
+      });
+      $("#startmatch").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/start");
+      });
+      $("#pit").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/pit");
+      });
+      $("#flipper").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/flipper");
+      });
+
+
+      // Add more buttons with different URLs as needed
+  });
+</script>
+
+
+

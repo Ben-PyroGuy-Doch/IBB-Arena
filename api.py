@@ -18,10 +18,14 @@ def FLIPPER():
     flipper()
     return {'message': 'flipper triggered'}
 
-@app.get('/spinner')
-def SPINNER():
-    spinner(True)
-    return {'message': 'spinner triggered'}
+@app.get('/spinner/')
+def SPINNER(onof: bool):
+    spinner(onof)
+    if onof:
+        return {'message': 'spinner on'}
+    else:
+        return {'message': 'spinner off'}
+
 
 
 @app.get('/start')
