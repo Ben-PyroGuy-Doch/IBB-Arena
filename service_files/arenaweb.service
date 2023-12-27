@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/var/www/html/arenaweb
+WorkingDirectory=/var/www/html/webapp
 LimitNOFILE=4096
 ExecStart=/usr/local/bin/flask --app app run --debug --host=0.0.0.0
 Restart=on-failure

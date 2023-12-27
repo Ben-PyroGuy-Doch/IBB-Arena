@@ -2,7 +2,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 import logging
 
-logging.basicConfig(filename='arena.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)-2s %(message)s',  datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename='/var/log/arenaweb.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)-2s %(message)s',  datefmt='%Y-%m-%d %H:%M:%S')
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT) #Flipper pin
 GPIO.setup(13, GPIO.OUT) #Spinner pin

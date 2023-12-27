@@ -16,7 +16,7 @@ app.add_middleware(
 
 @app.get('/')
 async def root():
-    return {'message': 'Hello'}
+    return {'message': 'What you doing'}
 
 @app.get('/pit')
 def PIT():

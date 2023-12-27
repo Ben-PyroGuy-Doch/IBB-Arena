@@ -2,4 +2,4 @@ flask
 flask_cors
 fastapi
 uvicorn
-flask_httpaut
+flask_httpauth
