@@ -10,7 +10,7 @@ GPIO.setup(15, GPIO.OUT) #Pit pin
 
 def flipper():
     GPIO.output(11, 1)
-    logging.info('spinner triggered')
+    logging.info('flipper triggered')
     sleep(1)
     GPIO.output(11, 0)
 
