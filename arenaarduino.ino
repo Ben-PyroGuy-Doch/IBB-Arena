@@ -15,30 +15,39 @@ int endbuttonState = 0;
 int lastButtonState = 0;
 
 void setup() {
+  Serial.begin(9600);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
-  pinMode(START_PIN, INPUT);
-  pinMode(MID_PIN, INPUT);
-  pinMode(END_PIN, INPUT);
+  pinMode(START_PIN, INPUT_PULLUP);
+  pinMode(MID_PIN, INPUT_PULLUP);
+  pinMode(END_PIN, INPUT_PULLUP);
+  Serial.println("setup compleate");
 }
 
 void loop() {
+  // Serial.println("looping");
+  
   startbuttonState = digitalRead(START_PIN);
   midbuttonState = digitalRead(MID_PIN);
   endbuttonState = digitalRead(END_PIN);
 
 
-  if (startbuttonState == HIGH) {
+  if (startbuttonState == LOW) {
+     Serial.print("match start pressed");
     // Button was pressed
-    start();
+    // start();
   }
-  else if (midbuttonState == HIGH) {
+  else if (midbuttonState == LOW) {
+      Serial.print("match mid pressed"); 
+
     // Button was pressed
-    flashred(3);
+    // flashred(3);
   }
-  else if (endbuttonState == HIGH) {
+  else if (endbuttonState == LOW) {
+    Serial.print("match end pressed");
+
     // Button was pressed
-    endred(3);
+    // endred(3);
   }
 }
 
