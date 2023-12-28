@@ -9,6 +9,9 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 int buttonState = 0;
+int startbuttonState = 0;
+int midbuttonState = 0;
+int endbuttonState = 0;
 int lastButtonState = 0;
 
 void setup() {
@@ -27,19 +30,19 @@ void loop() {
 
   if (startbuttonState == HIGH) {
     // Button was pressed
-    Start();
+    start();
   }
   else if (midbuttonState == HIGH) {
     // Button was pressed
-    FlashRed();
+    flashred(3);
   }
   else if (endbuttonState == HIGH) {
     // Button was pressed
-    Endred();
+    endred(3);
   }
 }
 
-void Start() {
+void start() {
   for (int i = 0; i < NUMPIXELS; i++) {
     // Flash pattern: 1-2-3
     strip.setPixelColor(i, 255, 0, 0); // Red
@@ -66,7 +69,7 @@ void Start() {
   strip.show();
 }
 
-void flashRed(int duration) {
+void flashred(int duration) {
   unsigned long startTime = millis();
 
   while (millis() - startTime < duration) {
@@ -80,7 +83,7 @@ void flashRed(int duration) {
   }
 }
 
-void EndredRed(int duration) {
+void endred(int duration) {
   unsigned long startTime = millis();
 
   while (millis() - startTime < duration) {
