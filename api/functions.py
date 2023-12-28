@@ -7,6 +7,9 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT) #Flipper pin
 GPIO.setup(13, GPIO.OUT) #Spinner pin
 GPIO.setup(15, GPIO.OUT) #Pit pin
+GPIO.setup(19, GPIO.OUT) #Flipper pin
+GPIO.setup(21, GPIO.OUT) #Spinner pin
+GPIO.setup(23, GPIO.OUT) #Pit pin
 
 def flipper():
     GPIO.output(11, 1)
