@@ -7,9 +7,9 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT) #Flipper pin
 GPIO.setup(13, GPIO.OUT) #Spinner pin
 GPIO.setup(15, GPIO.OUT) #Pit pin
-GPIO.setup(19, GPIO.OUT) #Flipper pin
-GPIO.setup(21, GPIO.OUT) #Spinner pin
-GPIO.setup(23, GPIO.OUT) #Pit pin
+GPIO.setup(19, GPIO.OUT) #LED mid pin
+GPIO.setup(21, GPIO.OUT) #LED start pin
+GPIO.setup(23, GPIO.OUT) #LED end pin
 
 def flipper():
     GPIO.output(11, 1)
@@ -32,13 +32,34 @@ def pit():
     sleep(1)
     GPIO.output(15, 0)
 
+def lightstart():
+    GPIO.output(19, 1)
+    logging.info('light start')
+    sleep(1)
+    GPIO.output(19, 0)
+
+def lightmid():
+    GPIO.output(21, 1)
+    logging.info('light mid started')
+    sleep(1)
+    GPIO.output(21, 0)
+
+def lightend():
+    GPIO.output(23, 1)
+    logging.info('light end started')
+    sleep(1)
+    GPIO.output(23, 0)
+
 def matchtimer():
     logging.info('match started')
+    lightstart()
     flipper()
     sleep(10)
+    lightmid()
     pit()
     sleep(10)
     spinner(True)
     sleep(10)
     spinner(False)
+    lightend()
     logging.info('match ended')
