@@ -62,7 +62,7 @@ systemctl stop hostapd
 
 cat << EOF >> /etc/dhcpcd.conf
 interface $WLANINT
-    static ip_address=192.168.7.1/24
+    static ip_address=192.168.80.1/24
     nohook wpa_supplicant
 EOF
 
