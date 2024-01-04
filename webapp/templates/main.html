@@ -1,32 +1,109 @@
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-</head>
-</head>
-<body style="background-color:rgb(118, 5, 205);">
-<h1>IBB Arena</h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #8c067a;
+        text-align: center;
+        width: 100%;
+        height: auto;
+    }
+    div {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #8c067a;
+        text-align: center;
+        width: auto;
+        height: auto;
+    }
+    button {
+        margin: 10;
+        text-align: center;
+        /*
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #8c067a;
+        text-align: center; */
+        width: 25%;
+        height: 20%;
+    }
 
-<div width="100%" height="100%">
+    #content {
+        width: 80vw;
+            max-width: 600px; /* Optional: Set a maximum width for the content */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+</head>
+
+<body>
+<h1 class="">IBB Arena</h1>
+<h1 id="timer">03:00.000</h1>
 <div>
-    <button  type="button" id="startmatch" class="btn btn-primary">start</button>
+    <button  type="button" id="startmatch" class="btn btn-success">Start</button>
+    <button  type="button" id="endmatch" class="btn btn-danger">Stop</button>
+</div>
 
-
-    <button type="button" id="pit" class="btn btn-danger">pit</button>
-
-  
-
+<div>
+    <button type="button" id="pit" class="btn btn-dark">Pit</button>
     <button type="button" id="flipper" class="btn btn-warning">Flip</button>
 </div>
 
 <div>
-  <button type="button" id="spinneron" class="btn btn-danger">Spinner On</button>
+  <button type="button" id="spinneron" class="btn btn-info">Spinner On</button>
 
-  <button type="button" id="spinneroff" class="btn btn-success">Spinner Off</button>
+  <button type="button" id="spinneroff" class="btn btn-primary">Spinner Off</button>
 
 </div>
+
+
 </body>
 
-</div>
+<script>
+var timerInterval; // Declare the timerInterval globally to access it in both functions
+
+function startTimer() {
+    var duration = 180 * 1000; // 3 minutes in milliseconds
+    var timerDisplay = document.getElementById("timer");
+
+    // Ensure that only one timer is running at a time
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(function() {
+        var minutes = Math.floor(duration / (60 * 1000));
+        var seconds = Math.floor((duration % (60 * 1000)) / 1000);
+        var milliseconds = duration % 1000;
+
+        // Display the timer in the format mm:ss.SSS
+        timerDisplay.textContent = (minutes < 10 ? '0' : '') + minutes + ':' +
+                                    (seconds < 10 ? '0' : '') + seconds + '.' +
+                                    (milliseconds < 100 ? '0' : '') +
+                                    (milliseconds < 10 ? '0' : '') + milliseconds;
+
+        if (duration <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up!");
+        }
+
+        duration -= 10; // Decrease the duration by 10 milliseconds
+    }, 10); // Update the timer every 10 milliseconds
+
+}
+
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    alert("Timer stopped!");
+}
+</script>
 
 
 <script>
@@ -42,12 +119,7 @@
                   console.log("Request successful:", data);
                   // You can handle the response data here if needed
               },
-              // error: function(xhr, status, error) {
-              //     console.error("Error:", error);
-              //     console.error("Status:", status);
-              //     console.error("XHR:", xhr);
-              //     // Handle errors if any
-              // }
+        
           });
       }
 
@@ -61,6 +133,11 @@
       });
       $("#startmatch").click(function () {
           makeAjaxRequest("http://192.168.1.70:8000/start");
+          startTimer();
+      });
+      $("#endmatch").click(function () {
+          makeAjaxRequest("http://192.168.1.70:8000/stop");
+          stopTimer();
       });
       $("#pit").click(function () {
           makeAjaxRequest("http://192.168.1.70:8000/pit");
