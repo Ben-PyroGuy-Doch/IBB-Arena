@@ -7,11 +7,7 @@ fi
 
 IP_ADDR=$(hostname -I)
 WLANINT="wlan1"
-# mkdir -p /var/www/html/arenaweb
-# mkdir -p /var/www/html/arenaapi
-# FULL_WEB_PATH= "/var/www/html/arenaweb"
-# FULL_API_PATH= "/var/www/html/arenaapi"
-# SERVICE_PATH= "/etc/systemd/system"
+
 
 pip install -r ./requirements.txt
 apt install dnsmasq hostapd
