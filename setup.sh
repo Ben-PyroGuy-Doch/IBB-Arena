@@ -14,13 +14,47 @@ WLANINT="wlan1"
 # SERVICE_PATH= "/etc/systemd/system"
 
 pip install -r ./requirements.txt
+apt install dnsmasq hostapd
 
 cp -r ./api "/var/www/html"
 cp -r ./webapp "/var/www/html"
 
-cp ./service_files/arenaapi.service "/etc/systemd/system"
-cp ./service_files/arenaweb.service "/etc/systemd/system"
-apt install dnsmasq hostapd
+
+cat << EOF >> /etc/systemd/system/arenaapi.service
+[Unit]
+Description=ArenaAPI
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/html/api
+LimitNOFILE=4096
+ExecStart=/usr/local/bin/uvicorn api:app --reload --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+cat << EOF >> /etc/systemd/system/arenaweb.service
+[Unit]
+Description=ArenaWeb
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/html/webapp
+LimitNOFILE=4096
+ExecStart=/usr/local/bin/flask --app app run --debug --host=0.0.0.0
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
 
 systemctl daemon-reload
 systemctl start arenaapi
