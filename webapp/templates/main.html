@@ -63,12 +63,52 @@
   <button type="button" id="spinneroff" class="btn btn-primary">Spinner Off</button>
 
 </div>
-
-
 </body>
 
 <script>
-var timerInterval; // Declare the timerInterval globally to access it in both functions
+  $(function () {
+      function makeAjaxRequest(url) {
+          console.log("Button clicked for URL:", url);
+
+          // Make an AJAX request
+          $.ajax({
+              type: "GET",
+              url: url,
+              success: function(data) {
+                  console.log("Request successful:", data);
+                  // You can handle the response data here if needed
+              },
+        
+          });
+      }
+
+      // Attach click event handlers to buttons
+      $("#spinneron").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/spinner/?onof=True");
+      });
+
+      $("#spinneroff").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/spinner/?onof=False");
+      });
+      $("#startmatch").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/start");
+          startTimer();
+      });
+      $("#endmatch").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/stop");
+          stopTimer();
+      });
+      $("#pit").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/pit");
+      });
+      $("#flipper").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/flipper");
+      });
+
+
+      // Add more buttons with different URLs as needed
+  });
+  var timerInterval; // Declare the timerInterval globally to access it in both functions
 
 function startTimer() {
     var duration = 180 * 1000; // 3 minutes in milliseconds
@@ -95,60 +135,11 @@ function startTimer() {
 
         duration -= 10; // Decrease the duration by 10 milliseconds
     }, 10); // Update the timer every 10 milliseconds
-
 }
-
-
-function stopTimer() {
-    clearInterval(timerInterval);
-    alert("Timer stopped!");
+    function stopTimer() {
+        clearInterval(timerInterval);
+        alert("Timer stopped!");
 }
-</script>
-
-
-<script>
-  $(function () {
-      function makeAjaxRequest(url) {
-          console.log("Button clicked for URL:", url);
-
-          // Make an AJAX request
-          $.ajax({
-              type: "GET",
-              url: url,
-              success: function(data) {
-                  console.log("Request successful:", data);
-                  // You can handle the response data here if needed
-              },
-        
-          });
-      }
-
-      // Attach click event handlers to buttons
-      $("#spinneron").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/spinner/?onof=True");
-      });
-
-      $("#spinneroff").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/spinner/?onof=False");
-      });
-      $("#startmatch").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/start");
-          startTimer();
-      });
-      $("#endmatch").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/stop");
-          stopTimer();
-      });
-      $("#pit").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/pit");
-      });
-      $("#flipper").click(function () {
-          makeAjaxRequest("http://192.168.1.70:8000/flipper");
-      });
-
-
-      // Add more buttons with different URLs as needed
-  });
 </script>
 
 

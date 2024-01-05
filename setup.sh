@@ -16,7 +16,7 @@ cp -r ./api "/var/www/html"
 cp -r ./webapp "/var/www/html"
 
 
-cat << EOF >> /etc/systemd/system/arenaapi.service
+cat << EOF > /etc/systemd/system/arenaapi.service
 [Unit]
 Description=ArenaAPI
 After=network.target
@@ -34,7 +34,7 @@ WantedBy=multi-user.target
 EOF
 
 
-cat << EOF >> /etc/systemd/system/arenaweb.service
+cat << EOF > /etc/systemd/system/arenaweb.service
 [Unit]
 Description=ArenaWeb
 After=network.target
@@ -60,18 +60,18 @@ systemctl enable arenaapi
 systemctl stop dnsmasq
 systemctl stop hostapd
 
-cat << EOF >> /etc/dhcpcd.conf
+cat << EOF > /etc/dhcpcd.conf
 interface $WLANINT
     static ip_address=192.168.80.1/24
     nohook wpa_supplicant
 EOF
 
-cat << EOF >> /etc/dnsmasq.conf
+cat << EOF > /etc/dnsmasq.conf
 interface=$WLANINT
 dhcp-range=192.168.80.2,192.168.80.254,255.255.255.0,24h
 EOF
 
-cat << EOF >> /etc/hostapd/hostapd.conf
+cat << EOF > /etc/hostapd/hostapd.conf
 country_code=GB
 interface=$WLANINT
 ssid=IBB_Arena
@@ -84,7 +84,7 @@ wpa_pairwise=TKIP CCMP
 rsn_pairwise=CCMP
 EOF
 
-cat << EOF >> /etc/default/hostapd
+cat << EOF > /etc/default/hostapd
 interface=$WLANINT
 dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
 EOF
