@@ -68,7 +68,7 @@ EOF
 
 cat << EOF >> /etc/dnsmasq.conf
 interface=$WLANINT
-dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+dhcp-range=192.168.80.2,192.168.80.254,255.255.255.0,24h
 EOF
 
 cat << EOF >> /etc/hostapd/hostapd.conf
