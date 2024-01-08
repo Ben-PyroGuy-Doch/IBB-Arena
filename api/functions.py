@@ -12,7 +12,7 @@ GPIO.setup(19, GPIO.OUT) #LED mid pin
 GPIO.setup(21, GPIO.OUT) #LED start pin
 GPIO.setup(23, GPIO.OUT) #LED end pin
 
-active_flag = 'active_flag.txt'
+active_flag = 'active_flag.txt' #file where weapon active flag is stored, 1=weapons active 0=weapons inactive, this is also used to break the match loop
 
 def flipper():
     flagcheck()
@@ -38,21 +38,21 @@ def pit():
     GPIO.output(15, 0)
 
 def lightstart():
+    flagcheck()
     GPIO.output(19, 1)
     logging.info('light start')
-    sleep(1)
     GPIO.output(19, 0)
 
 def lightmid():
+    flagcheck()
     GPIO.output(21, 1)
     logging.info('light mid started')
-    sleep(1)
     GPIO.output(21, 0)
 
 def lightend():
+    flagcheck()
     GPIO.output(23, 1)
     logging.info('light end started')
-    sleep(1)
     GPIO.output(23, 0)
 
 def stopmatch():
