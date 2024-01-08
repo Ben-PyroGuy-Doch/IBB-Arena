@@ -22,8 +22,8 @@ def flipper():
     GPIO.output(11, 0)
 
 def spinner(state):
-    flagcheck()
     if state == True:
+        flagcheck()
         logging.info('spinner turned on')
         GPIO.output(13, 1)
     else:
