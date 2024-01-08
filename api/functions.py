@@ -38,21 +38,18 @@ def pit():
     GPIO.output(15, 0)
 
 def lightstart():
-   
     GPIO.output(19, 1)
     logging.info('light start')
     sleep(1)
     GPIO.output(19, 0)
 
 def lightmid():
-  
     GPIO.output(21, 1)
     logging.info('light mid started')
     sleep(1)
     GPIO.output(21, 0)
 
 def lightend():
-  
     GPIO.output(23, 1)
     logging.info('light end started')
     sleep(1)
@@ -78,15 +75,17 @@ def flagcheck():
 
 def matchtimer():
     logging.info('match started')
-    lightstart()
-    sleep(10)
-    lightmid()
     with open(active_flag, 'w') as file:
-    # Write '0' to the file
         file.write('1')
+    lightstart()
+    sleep(10) #timer till pit opens and spinner turns on
+    #middle of match, weapons activate
+    lightmid()
+    spinner(True)
     pit()
-    sleep(20)
-    spinner(False)
+    sleep(20) #timer till the end of the match
+    #end of the match
     lightend()
+    spinner(False)
     stopmatch()
     logging.info('match ended')
