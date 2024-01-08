@@ -36,9 +36,12 @@ def SPINNER(onof: bool):
     else:
         return {'message': 'spinner off'}
 
-
-
 @app.get('/start')
 def STARTMATCH():
     matchtimer()
     return {'message': 'match started'}
+
+@app.get('/stop')
+def STOPMATCH():
+    stopmatch()
+    return {'message': 'match stop flag set'}

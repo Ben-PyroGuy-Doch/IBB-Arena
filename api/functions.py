@@ -1,5 +1,6 @@
 from time import sleep
 import RPi.GPIO as GPIO
+import sys
 import logging
 
 logging.basicConfig(filename='/var/log/arenaapi.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)-2s %(message)s',  datefmt='%Y-%m-%d %H:%M:%S')
@@ -11,13 +12,17 @@ GPIO.setup(19, GPIO.OUT) #LED mid pin
 GPIO.setup(21, GPIO.OUT) #LED start pin
 GPIO.setup(23, GPIO.OUT) #LED end pin
 
+active_flag = 'active_flag.txt'
+
 def flipper():
+    flagcheck()
     GPIO.output(11, 1)
     logging.info('flipper triggered')
     sleep(1)
     GPIO.output(11, 0)
 
 def spinner(state):
+    flagcheck()
     if state == True:
         logging.info('spinner turned on')
         GPIO.output(13, 1)
@@ -26,39 +31,62 @@ def spinner(state):
         GPIO.output(13, 0)
 
 def pit():
+    flagcheck()
     logging.info('pit triggered')
     GPIO.output(15, 1)
     sleep(1)
     GPIO.output(15, 0)
 
 def lightstart():
+   
     GPIO.output(19, 1)
     logging.info('light start')
     sleep(1)
     GPIO.output(19, 0)
 
 def lightmid():
+  
     GPIO.output(21, 1)
     logging.info('light mid started')
     sleep(1)
     GPIO.output(21, 0)
 
 def lightend():
+  
     GPIO.output(23, 1)
     logging.info('light end started')
     sleep(1)
     GPIO.output(23, 0)
 
+def stopmatch():
+    with open(active_flag, 'w') as file:
+    # Write '0' to the file
+        file.write('0')
+
+def flagcheck():
+    with open(active_flag, 'r') as file:
+        # Read the content of the file
+        content = file.read()
+
+        # Check if the content is '0' or '1'
+        if content == '0':
+            logging.info("match end flag is set ending loop")
+            sys.exit()
+        elif content == '1':
+            return
+        
+
 def matchtimer():
     logging.info('match started')
     lightstart()
-    flipper()
     sleep(10)
     lightmid()
+    with open(active_flag, 'w') as file:
+    # Write '0' to the file
+        file.write('1')
     pit()
-    sleep(10)
-    spinner(True)
-    sleep(10)
+    sleep(20)
     spinner(False)
     lightend()
+    stopmatch()
     logging.info('match ended')

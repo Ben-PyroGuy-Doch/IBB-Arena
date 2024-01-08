@@ -84,25 +84,25 @@
 
       // Attach click event handlers to buttons
       $("#spinneron").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/spinner/?onof=True");
+          makeAjaxRequest("http://192.168.1.123:8000/spinner/?onof=True");
       });
 
       $("#spinneroff").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/spinner/?onof=False");
+          makeAjaxRequest("http://192.168.1.123:8000/spinner/?onof=False");
       });
       $("#startmatch").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/start");
+          makeAjaxRequest("http://192.168.1.123:8000/start");
           startTimer();
       });
       $("#endmatch").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/stop");
+          makeAjaxRequest("http://192.168.1.123:8000/stop");
           stopTimer();
       });
       $("#pit").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/pit");
+          makeAjaxRequest("http://192.168.1.123:8000/pit");
       });
       $("#flipper").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/flipper");
+          makeAjaxRequest("http://192.168.1.123:8000/flipper");
       });
 
 
