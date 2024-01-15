@@ -78,12 +78,12 @@ def matchtimer():
     with open(active_flag, 'w') as file:
         file.write('1')
     lightstart()
-    sleep(10) #timer till pit opens and spinner turns on
+    sleep(60) #timer till pit opens and spinner turns on
     #middle of match, weapons activate
     lightmid()
     spinner(True)
     pit()
-    sleep(20) #timer till the end of the match
+    sleep(120) #timer till the end of the match
     #end of the match
     lightend()
     spinner(False)
