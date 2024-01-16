@@ -1,66 +1,27 @@
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #8c067a;
-        text-align: center;
-        width: 100%;
-        height: auto;
-    }
-    div {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #8c067a;
-        text-align: center;
-        width: auto;
-        height: auto;
-    }
-    button {
-        margin: 10;
-        text-align: center;
-        /*
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #8c067a;
-        text-align: center; */
-        width: 25%;
-        height: 20%;
-    }
-
-    #content {
-        width: 80vw;
-            max-width: 600px; /* Optional: Set a maximum width for the content */
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-</style>
 </head>
 
 <body>
 <h1 class="">IBB Arena</h1>
 <h1 id="timer">03:00.000</h1>
 <div>
-    <button  type="button" id="startmatch" class="btn btn-success">Start</button>
-    <button  type="button" id="endmatch" class="btn btn-danger">Stop</button>
+    <button  type="button" id="startmatch" class="btn-success">Start</button>
+    <button  type="button" id="endmatch" class="btn-danger">Stop</button>
 </div>
 
 <div>
-    <button type="button" id="pit" class="btn btn-dark">Pit</button>
-    <button type="button" id="flipper" class="btn btn-warning">Flip</button>
+    <button type="button" id="pit" class="btn-dark">Pit</button>
+    <button type="button" id="flipper" class="btn-warning">Flip</button>
 </div>
 
 <div>
-  <button type="button" id="spinneron" class="btn btn-info">Spinner On</button>
+  <button type="button" id="spinneron" class="btn-info">Spinner On</button>
 
-  <button type="button" id="spinneroff" class="btn btn-primary">Spinner Off</button>
+  <button type="button" id="spinneroff" class="btn-primary">Spinner Off</button>
 
 </div>
 </body>

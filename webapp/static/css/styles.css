@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #8c067a;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+div {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #8c067a;
+    text-align: center;
+    width: auto;
+    height: auto;
+}
+button {
+    margin: 10;
+    text-align: center;
+    /*
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #8c067a;
+    text-align: center; */
+    width: 25%;
+    height: 20%;
+}
+#content {
+    width: 80vw;
+        max-width: 600px; /* Optional: Set a maximum width for the content */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+    background-color: rgb(73, 144, 3);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
+.btn-danger {
+    background-color: rgb(255, 30, 0);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
+.btn-dark {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
+.btn-warning {
+    background-color: rgb(142, 6, 6);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
+.btn-info {
+    background-color: rgb(72, 0, 255);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
+.btn-primary {
+    background-color: rgb(56, 50, 61);
+    border-radius: 8px;
+    color: white;
+    font-size: x-large;
+}
