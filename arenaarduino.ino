@@ -1,7 +1,11 @@
-#include <Adafruit_NeoPixel.h>
+#include <FastLED.h>
 
-#define PIN            6  // Pin number to which the data input of the NeoPixel strip is connected
-#define NUMPIXELS      30 // Number of LEDs in the strip
+
+#define DATA_PIN 23
+#define CLOCK_PIN 22
+
+// #define PIN            6  // Pin number to which the data input of the NeoPixel strip is connected
+#define NUM_LEDS     30 // Number of LEDs in the strip
 #define START_PIN     2  // Pin number to which the button is connected
 #define MID_PIN     3  // Pin number to which the button is connected
 #define END_PIN     4  // Pin number to which the button is connected
@@ -14,6 +18,10 @@ int midbuttonState = 0;
 int endbuttonState = 0;
 int lastButtonState = 0;
 
+// Define the array of leds
+CRGB leds[NUM_LEDS];
+
+
 void setup() {
   Serial.begin(9600);
   strip.begin();
@@ -21,7 +29,12 @@ void setup() {
   pinMode(START_PIN, INPUT_PULLUP);
   pinMode(MID_PIN, INPUT_PULLUP);
   pinMode(END_PIN, INPUT_PULLUP);
+  FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, BGR>(leds, NUM_LEDS);
   Serial.println("setup compleate");
+
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Red;
+  }
 }
 
 void loop() {
@@ -41,67 +54,99 @@ void loop() {
       Serial.print("match mid pressed"); 
 
     // Button was pressed
-    // flashred(3);
+    // flashred();
   }
   else if (endbuttonState == LOW) {
     Serial.print("match end pressed");
 
     // Button was pressed
-    // endred(3);
+    // endred();
   }
 }
 
 void start() {
-  for (int i = 0; i < NUMPIXELS; i++) {
-    // Flash pattern: 1-2-3
-    strip.setPixelColor(i, 255, 0, 0); // Red
-    strip.show();
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Red;
+  }
+    FastLED.show();
     delay(500);
-
-    strip.setPixelColor(i, 0, 0, 0); // Turn off
-    strip.show();
-    delay(250);
-
-    strip.setPixelColor(i, 255, 255, 255); // White
-    strip.show();
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::White;
+  }
+    FastLED.show();
     delay(500);
-
-    strip.setPixelColor(i, 0, 0, 0); // Turn off
-    strip.show();
-    delay(250);
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Red;
+  }
+    FastLED.show();
+    delay(500);
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::White;
+  }
+    FastLED.show();
+    delay(500);
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Red;
+  }
+  FastLED.show();
+  delay(500)
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Green;
+  }
+    FastLED.show();
+    delay(1000);
+  for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::White;
+  }
+  FastLED.show();
   }
 
-  // Turn all LEDs white at the end
-  for (int i = 0; i < NUMPIXELS; i++) {
-    strip.setPixelColor(i, 255, 255, 255); // Turn off
-  }
-  strip.show();
+
+void flashred() {
+  red();
+  white();
+   delay(30);
+  red();
+  white();
+   delay(30);
+  red();
+  white();
+   delay(30);
+  red();
+  white();
+  
 }
 
-void flashred(int duration) {
-  unsigned long startTime = millis();
-
-  while (millis() - startTime < duration) {
-    strip.fill(strip.Color(255, 0, 0)); // Set all pixels to red
-    strip.show();
-    delay(100); // Adjust the delay to control the flashing speed
-
-    strip.fill(strip.Color(0, 0, 0)); // Turn off all pixels
-    strip.show();
-    delay(100); // Adjust the delay to control the flashing speed
-  }
+void endred() {
+  red();
+   delay(30);
+  red();
+   delay(30);
+  red();
+   delay(30);
+  red();
+   delay(30);
+  red();
+ 
 }
 
-void endred(int duration) {
-  unsigned long startTime = millis();
-
-  while (millis() - startTime < duration) {
-    strip.fill(strip.Color(255, 0, 0)); // Set all pixels to red
-    strip.show();
-    delay(100); // Adjust the delay to control the flashing speed
-
-    strip.fill(strip.Color(0, 0, 0)); // Turn off all pixels
-    strip.show();
-    delay(100); // Adjust the delay to control the flashing speed
+void red(){
+   for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Red;
   }
+  FastLED.show();
+}
+
+void green(){
+   for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::Green;
+  }
+  FastLED.show();
+}
+
+void white(){
+   for(int i=0;i<NUM_LEDS;i++){
+    leds[i] = CRGB::White;
+  }
+  FastLED.show();
 }
