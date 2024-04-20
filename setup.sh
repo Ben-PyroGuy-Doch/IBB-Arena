@@ -89,7 +89,7 @@ interface=$WLANINT
 dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
 EOF
 
-sed -i "s/^#DAEMON_CONF.*/DAEMON_CONF="/etc/hostapd/hostapd.conf"/" "/etc/default/hostapd"
+sed -i 's/^#DAEMON_CONF.*/DAEMON_CONF="\/etc\/hostapd\/hostapd.conf"/' '/etc/default/hostapd'
 
 service dhcpcd restart
 systemctl start dnsmasq
