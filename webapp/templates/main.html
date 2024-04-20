@@ -7,7 +7,7 @@
 
 <body>
 <h1 class="">IBB Arena</h1>
-<h1 id="timer">03:00.000</h1>
+<h1 id="timer">00:00.000</h1>
 <div>
     <button  type="button" id="startmatch" class="btn-success">Start</button>
     <button  type="button" id="endmatch" class="btn-danger">Stop</button>
@@ -78,9 +78,17 @@
       $("#spinner3off").click(function () {
           makeAjaxRequest("http://192.168.80.1:8000/spinner3off");
       });
-      $("#startmatch").click(function () {
-          makeAjaxRequest("http://192.168.80.1:8000/start");
-          startTimer();
+      $("#startmatch120").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/start120");
+          startTimer(120);
+      });
+      $("#startmatch180").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/start180");
+          startTimer(180);
+      });
+      $("#startmatchduck").click(function () {
+          makeAjaxRequest("http://192.168.80.1:8000/startduck");
+          startTimer(75);
       });
       $("#endmatch").click(function () {
           makeAjaxRequest("http://192.168.80.1:8000/stop");
@@ -102,7 +110,8 @@
   var timerInterval; // Declare the timerInterval globally to access it in both functions
 
 function startTimer() {
-    var duration = 180 * 1000; // 3 minutes in milliseconds
+    def startTimer(length)
+    var duration = length * 1000; // 3 minutes in milliseconds
     var timerDisplay = document.getElementById("timer");
 
     // Ensure that only one timer is running at a time
