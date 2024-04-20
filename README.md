@@ -6,8 +6,7 @@
 * Raspberry pi 4
 * 48v DC PSU
 * Arduino nano/every
-* 3 way relay (any high amp 12v relay will work, all spinners hooked into this)
-* Relay control board
+* 8 Relay control board
 * 48v Relay
 * Wago connectors (optional but useful for neatness)
 * Alifa Wifi Card
