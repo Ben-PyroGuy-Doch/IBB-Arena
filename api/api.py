@@ -24,8 +24,8 @@ def PITUP():
     return {'message': 'Pit up'}
 
 @app.get('/pitdown')
-def PITUP():
-    pitup()
+def PITDOWN():
+    pitdown()
     return {'message': 'Pit down'}
 
 @app.get('/flipper')
