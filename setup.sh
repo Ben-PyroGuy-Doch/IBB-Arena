@@ -65,6 +65,7 @@ cat << EOF > /etc/dhcpcd.conf
 interface $WLANINT
     static ip_address=192.168.80.1/24
     nohook wpa_supplicant
+static domain_name_servers=8.8.4.4 8.8.8.8
 EOF
 
 cat << EOF > /etc/dnsmasq.conf
@@ -90,7 +91,7 @@ interface=$WLANINT
 dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
 EOF
 
-sed -i "s/^#DAEMON_CONF.*/DAEMON_CONF="/etc/hostapd/hostapd.conf"/" "/etc/default/hostapd"
+sed -i 's/^#DAEMON_CONF.*/DAEMON_CONF="\/etc\/hostapd\/hostapd.conf"/' '/etc/default/hostapd'
 
 systemctl start dnsmasq
 systemctl unmask hostapd
