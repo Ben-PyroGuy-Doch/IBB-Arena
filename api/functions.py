@@ -69,21 +69,21 @@ def spinner2off():
     GPIO.output(18, 0)
     GPIO.output(22, 0)
 
-def spinner3c(state): 
+def spinner3c(): 
     flagcheck()
     logging.info('Spinner 3 clockwise')
     GPIO.output(26, 0)
     sleep(1)
     GPIO.output(24, 1)
 
-def spinner3a(state): 
+def spinner3a(): 
     flagcheck()
     logging.info('Spinner 3 anti-clockwise')
     GPIO.output(24, 0)
     sleep(1)
     GPIO.output(26, 1)
 
-def spinner3off(state):  
+def spinner3off():  
     flagcheck()
     logging.info('Spinner 3 off')
     GPIO.output(24, 0)
@@ -122,6 +122,11 @@ def stopmatch():
     # Write '0' to the file
         file.write('0')
 
+def active():
+    with open(active_flag, 'w') as file:
+    # Write '1' to the file
+        file.write('1')
+
 def flagcheck():
     with open(active_flag, 'r') as file:
         # Read the content of the file
@@ -143,19 +148,16 @@ def matchtimer120():
     sleep(30) #timer till pit opens and spinner turns on
     #middle of match, weapons activate
     lightmid()
-    spinner1c(True)
-    spinner2c(True)
-    spinner3c(True)
+    spinner1c()
+    spinner2c()
+    spinner3c()
     pitdown()
     sleep(90) #timer till the end of the match
     #end of the match
     lightend()
-    spinner1c(False)
-    spinner1a(False)
-    spinner2c(False)
-    spinner2a(False)
-    spinner3c(False)
-    spinner3a(False)
+    spinner1off()
+    spinner2off()
+    spinner3off()
     stopmatch()
     logging.info('match ended')
 
@@ -167,19 +169,16 @@ def matchtimer180():
     sleep(60) #timer till pit opens and spinner turns on
     #middle of match, weapons activate
     lightmid()
-    spinner1c(True)
-    spinner2c(True)
-    spinner3c(True)
+    spinner1c()
+    spinner2c()
+    spinner3c()
     pitdown()
     sleep(120) #timer till the end of the match
     #end of the match
     lightend()
-    spinner1c(False)
-    spinner1a(False)
-    spinner2c(False)
-    spinner2a(False)
-    spinner3c(False)
-    spinner3a(False)
+    spinner1off()
+    spinner2off()
+    spinner3off()
     stopmatch()
     logging.info('match ended')
 
@@ -191,18 +190,15 @@ def matchtimerDuck():
     sleep(15) #timer till pit opens and spinner turns on
     #middle of match, weapons activate
     lightmid()
-    spinner1c(True)
-    spinner2c(True)
-    spinner3c(True)
+    spinner1c()
+    spinner2c()
+    spinner3c()
     pitdown()
     sleep(60) #timer till the end of the match
     #end of the match
     lightend()
-    spinner1c(False)
-    spinner1a(False)
-    spinner2c(False)
-    spinner2a(False)
-    spinner3c(False)
-    spinner3a(False)
+    spinner1off()
+    spinner2off()
+    spinner3off()
     stopmatch()
     logging.info('match ended')

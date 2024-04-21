@@ -78,6 +78,11 @@ def SPINNER3OFF():
     spinner3off()
     return {'message': 'Spinner 3 Off'}
 
+@app.get('/active')
+def active():
+    active()
+    return {'active flag set'}
+
 @app.get('/start120')
 def STARTMATCH120():
     matchtimer120()
