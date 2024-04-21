@@ -12,7 +12,7 @@ WLANINT="wlan1"
 import pip
 import apt
 
-pip install -r ./requirements.txt
+pip install -r ./requirements.txt --break-system-packages
 apt install dnsmasq hostapd
 
 cp -r ./api "/var/www/html"
